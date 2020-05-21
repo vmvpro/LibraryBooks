@@ -10,14 +10,18 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="70"></RowDefinition>
 			<RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-		
+		</Grid.RowDefinitions>
+
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="300" ></ColumnDefinition>
 			<ColumnDefinition MinWidth="400"></ColumnDefinition>
 		</Grid.ColumnDefinitions>
 
-		<Label Content="Label" Grid.Row="0" Grid.ColumnSpan="2" />
+		<Label Content="Моя библиотека" Width="Auto" Grid.Row="0" Grid.ColumnSpan="2" Background="#FFECEBEB"
+		       HorizontalContentAlignment="Center"
+		       VerticalContentAlignment="Center" FontSize="20">
+		</Label>
+		<ListBox Grid.Row="1" Grid.Column="0" Background="LemonChiffon" />
 
 	</Grid>
 </Window>
