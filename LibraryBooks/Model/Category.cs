@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataBase
+namespace LibraryBooks.Model
 {
-    public class Class1
+    public class Category
     {
+	    public int CategoryId { get; set; }
+	    public string Name { get; set; }
     }
 }
