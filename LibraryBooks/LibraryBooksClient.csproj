@@ -74,6 +74,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\Command.cs" />
+    <Compile Include="Infrastructure\Annotations.cs" />
     <Compile Include="Infrastructure\Notifier.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Category.cs" />
