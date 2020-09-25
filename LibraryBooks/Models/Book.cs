@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryBooks.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryBooks.Model
 {
-    public class Book
+    public class Book :IBook
     {
 	    public int BookId { get; set; }
 	    public string Name { get; set; }
