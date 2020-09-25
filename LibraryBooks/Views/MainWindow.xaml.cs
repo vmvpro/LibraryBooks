@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LibraryBooks.View
+namespace LibraryBooks.Views
 {
 	/// <summary>
 	/// Логика взаимодействия для MainWindow.xaml
