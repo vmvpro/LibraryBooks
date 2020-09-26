@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-namespace LibraryBooks.Commands
+namespace LibraryBooksClient.Commands
 {
     public class Command : ICommand
     {

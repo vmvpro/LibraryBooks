@@ -1,8 +1,8 @@
-﻿<Application x:Class="LibraryBooks.App"
+﻿<Application x:Class="LibraryBooksClient.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:LibraryBooks"
-             StartupUri="View/MainWindow.xaml">
+             xmlns:local="clr-namespace:LibraryBooksClient"
+             StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
          
     </Application.Resources>

@@ -1,19 +1,19 @@
-﻿using LibraryBooks.Model;
+﻿using LibraryBooksClient.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryBooks.ViewModels
+namespace LibraryBooksClient.ViewModels
 {
-    public class ListBooksViewModel
-    {
-        List<Book> listSelectionWork;
+    //public class ListBooksViewModel
+    //{
+    //    List<Book> listSelectionWork;
 
-        public ListBooksViewModel()
-        {
+    //    public ListBooksViewModel()
+    //    {
                 
-        }
-    }
+    //    }
+    //}
 }
