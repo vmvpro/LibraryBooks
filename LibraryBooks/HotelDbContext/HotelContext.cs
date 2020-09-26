@@ -8,7 +8,7 @@ namespace LibraryBooksClient.HotelDbContext
         public HotelContext()
             : base("name=LibraryBooksNewVMVConnectionString")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<HotelContext, LibraryBooksClient.Migrations.Configuration>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<HotelContext, LibraryBooksClient.Migrations.Configuration>());
         }
 
         public DbSet<Client> Clients { get; set; }
