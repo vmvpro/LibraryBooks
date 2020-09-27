@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
-namespace LibraryBooksClient.ViewModels
+namespace LibraryBooksClient.ViewModel
 {
-    public class ListBooksViewModel: ViewModelBase
+    public class ListBooksViewModel : ViewModelBase
     {
-        List<Book> listSelectionWork;
-        private LibraryContext Context { get; }
+        public LibraryContext Context { get; }
+
+        public ListBooksViewModel()
+        { }
         public ListBooksViewModel(LibraryContext context)
         {
             Context = context;
-            //listSelectionWork = context.Books.ToList();
         }
 
-        public List<Book> Books { get; } = new List<Book>();
-
+        public List<Book> Books => Context.Books.ToList();
 
 
 

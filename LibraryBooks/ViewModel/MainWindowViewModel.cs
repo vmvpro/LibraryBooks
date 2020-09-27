@@ -1,4 +1,4 @@
-﻿namespace LibraryBooksClient.ViewModels
+﻿namespace LibraryBooksClient.ViewModel
 {
 	
 	using System.Threading.Tasks;
