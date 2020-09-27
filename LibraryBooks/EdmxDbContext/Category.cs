@@ -28,7 +28,7 @@ namespace LibraryBooksClient
         public int? counter { get; set; }
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [NotMapped]
+        //[NotMapped]
         public virtual ICollection<Subject> Subjects { get; set; }
     }
 }

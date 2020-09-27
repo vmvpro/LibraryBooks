@@ -20,7 +20,6 @@ namespace LibraryBooksClient.Model
         public string Description { get; set; }
 
         public int? IdAuthor { get; set; }
-
         public virtual Author Author { get; set; }
 
         public int? IdSubject { get; set; }

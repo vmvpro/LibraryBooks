@@ -22,7 +22,8 @@
 		       HorizontalContentAlignment="Center"
 		       VerticalContentAlignment="Center" FontSize="20">
         </Label>
-        <ListBox Name="lstListBooks" Grid.Row="1" Grid.Column="0" Background="LemonChiffon" >
+        <ListBox Name="lstListBooks" Grid.Row="1" Grid.Column="0" Background="LemonChiffon" 
+                 ItemsSource="{Binding Co}" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
