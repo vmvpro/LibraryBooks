@@ -49,60 +49,6 @@ namespace LibraryBooksClient.LibraryDbContext
 
             modelBuilder.Conventions.Add<PropertySnakeCaseConvention>();
 
-            //VmvConvention
-
-            //foreach (var entity in modelBuilder.Types)
-            //{
-            //    // Replace table names
-            //    entity.Relational().TableName = entity.Relational().TableName.ToSnakeCase();
-
-            //    // Replace column names            
-            //    foreach (var property in entity.GetProperties())
-            //    {
-            //        property.Relational().ColumnName = property.Relational().ColumnName.ToSnakeCase();
-            //    }
-
-            //    foreach (var key in entity.GetKeys())
-            //    {
-            //        key.Relational().Name = key.Relational().Name.ToSnakeCase();
-            //    }
-
-            //    foreach (var key in entity.GetForeignKeys())
-            //    {
-            //        key.Relational().Name = key.Relational().Name.ToSnakeCase();
-            //    }
-
-            //    foreach (var index in entity.GetIndexes())
-            //    {
-            //        index.Relational().Name = index.Relational().Name.ToSnakeCase();
-            //    }
-            //}
-
-            //modelBuilder.Entity<Author>()
-            //    .HasMany(e => e.Books)
-            //    .WithOptional(e => e.Author)
-            //    .HasForeignKey(e => e.id_author);
-
-            //modelBuilder.Entity<Book>()
-            //    .Property(e => e.description)
-            //    .IsUnicode(false);
-
-            //modelBuilder.Entity<Category>()
-            //    .HasMany(e => e.Subjects)
-            //    .WithOptional(e => e.Category)
-            //    .HasForeignKey(e => e.id_category);
-
-            //modelBuilder.Entity<Subject>()
-            //    .Property(e => e.comment)
-            //    .IsFixedLength();
-
-            //modelBuilder.Entity<Subject>()
-            //    .HasMany(e => e.Books)
-            //    .WithOptional(e => e.Subject)
-            //    .HasForeignKey(e => e.id_subject);
-
-            //modelBuilder.Entity<Author>().Property(x=>x.FirstName).HasColumnAnnotation(new )
-
             modelBuilder.Configurations.Add(new BookConfig());
             modelBuilder.Configurations.Add(new AuthorConfig());
             modelBuilder.Configurations.Add(new SubjectConfig());
