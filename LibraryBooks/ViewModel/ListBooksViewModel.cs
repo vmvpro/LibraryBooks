@@ -18,23 +18,23 @@ namespace LibraryBooksClient.ViewModel
         public LibraryContext Context { get; }
         public ObservableCollection<Book> Books { get; }
 
-        public ListBooksViewModel()
-        {
-            Context = new LibraryContext();
+		public ListBooksViewModel()
+		{
+			Context = new LibraryContext();
 
-            Books = new ObservableCollection<Book>(Context.Books) ;
-            BindingOperations.EnableCollectionSynchronization(Books, new object());
-            BooksView = CollectionViewSource.GetDefaultView(Books);
-            BooksView.GroupDescriptions.Add(new PropertyGroupDescription("Subject.Category.Name"));
-        }
-        //public ListBooksViewModel(LibraryContext context)
-        //{
-        //    Context = context;
-        //}
+			Books = new ObservableCollection<Book>(Context.Books);
+			BindingOperations.EnableCollectionSynchronization(Books, new object());
+			BooksView = CollectionViewSource.GetDefaultView(Books);
+			BooksView.GroupDescriptions.Add(new PropertyGroupDescription("Subject.Category.Name"));
+		}
+		public ListBooksViewModel(LibraryContext context)
+		{
+			Context = context;
+		}
 
-        //public List<Book> Books => Context.Books.ToList();
+		//public List<Book> Books => Context.Books.ToList();
 
-        public ICollectionView BooksView { get; set; }
+		public ICollectionView BooksView { get; set; }
 
     }
 }

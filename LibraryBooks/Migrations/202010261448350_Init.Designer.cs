@@ -13,7 +13,7 @@ namespace LibraryBooksClient.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202010261320577_Init"; }
+            get { return "202010261448350_Init"; }
         }
         
         string IMigrationMetadata.Source

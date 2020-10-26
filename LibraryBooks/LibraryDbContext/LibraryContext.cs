@@ -28,7 +28,16 @@ namespace LibraryBooksClient.LibraryDbContext
 
     public class LibraryContext : DbContext
     {
-        public LibraryContext() : base("name=LibraryBooks") { }
+        public LibraryContext() : base("name=LibraryBooks") 
+        {
+            
+        }
+
+        public LibraryContext(string nameOrConnectionString) : base("name=LibraryBooks")
+        {
+
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<HotelContext, LibraryBooksClient.Migrations.Configuration>());
+        }
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }

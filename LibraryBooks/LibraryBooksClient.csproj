@@ -96,9 +96,9 @@
     <Compile Include="Infrastructure\Notifier.cs" />
     <Compile Include="LibraryDbContext\ConfigurationDb.cs" />
     <Compile Include="LibraryDbContext\LibraryContext.cs" />
-    <Compile Include="Migrations\202010261320577_Init.cs" />
-    <Compile Include="Migrations\202010261320577_Init.Designer.cs">
-      <DependentUpon>202010261320577_Init.cs</DependentUpon>
+    <Compile Include="Migrations\202010261448350_Init.cs" />
+    <Compile Include="Migrations\202010261448350_Init.Designer.cs">
+      <DependentUpon>202010261448350_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Author.cs" />
@@ -128,8 +128,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202010261320577_Init.resx">
-      <DependentUpon>202010261320577_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010261448350_Init.resx">
+      <DependentUpon>202010261448350_Init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -144,9 +144,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

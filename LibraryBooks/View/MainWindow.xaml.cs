@@ -51,10 +51,10 @@ namespace LibraryBooksClient.View
 
         private void Fill()
         {
-            Context.Books.RemoveRange(Context.Books);
-            Context.Authors.RemoveRange(Context.Authors);
-            Context.Subjects.RemoveRange(Context.Subjects);
-            Context.Categories.RemoveRange(Context.Categories);
+            //Context.Books.RemoveRange(Context.Books);
+            //Context.Authors.RemoveRange(Context.Authors);
+            //Context.Subjects.RemoveRange(Context.Subjects);
+            //Context.Categories.RemoveRange(Context.Categories);
 
             List<Book> listBook = new List<Book>()
             {
