@@ -1,5 +1,4 @@
 ﻿using LibraryBooksClient.LibraryDbContext;
-using LibraryBooksClient.Migrations;
 using LibraryBooksClient.Model;
 using LibraryBooksClient.ViewModel;
 using System;
@@ -30,13 +29,13 @@ namespace LibraryBooksClient.View
         public MainWindow()
         {
             InitializeComponent();
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<LibraryContext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<LibraryContext>());
 
-            Context = new LibraryContext();
+            //Context = new LibraryContext();
 
             //Fill(); // uncomment if you want to fill database with default values
 
-            lstListBooks.DataContext = new ListBooksViewModel(Context);
+            //lstListBooks.DataContext = new ListBooksViewModel(Context);
 
             //lstListBooks.ItemsSource = viewModel.Books;
             //lstListBooks.ItemsSource = new List<Book>()

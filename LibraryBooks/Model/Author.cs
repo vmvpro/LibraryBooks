@@ -12,13 +12,34 @@ namespace LibraryBooksClient.Model
         public Author()
         {
             Books = new HashSet<Book>();
+            FirstName = "";
+            LastName = "";
+
         }
 
         public int AuthorId { get; set; }
 
-        public string FirstName { get; set; } = "";
+        public string FirstName { get; set; } // = "";
 
-        public string LastName { get; set; } = "";
+        public string LastName { get; set; } // = "";
+
+        public virtual string FullName
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(FirstName))
+                {
+
+                }
+
+                if (!String.IsNullOrEmpty(LastName))
+                {
+
+                }
+
+                return "";
+            }
+        }
 
         public string Comment { get; set; }
 

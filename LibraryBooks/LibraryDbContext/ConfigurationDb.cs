@@ -17,7 +17,6 @@ namespace LibraryBooksClient.LibraryDbContext
         public void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Properties().Configure(p => p.HasColumnAnnotation("", ""));
-            //.Configure(p => p.Ha);
         }
     }
 
@@ -40,7 +39,6 @@ namespace LibraryBooksClient.LibraryDbContext
             Property(field => field.Description).HasColumnType("nvarchar(max)");
             Property(field => field.Image).HasColumnType((DbType.Binary).ToString());
 
-
             ToTable("Books");
         }
 
@@ -51,21 +49,16 @@ namespace LibraryBooksClient.LibraryDbContext
         public AuthorConfig()
         {
             HasKey(field => field.AuthorId);
+
             HasMany(e => e.Books)
                 .WithOptional(e => e.Author)
                 .HasForeignKey(e => e.IdAuthor)
                 .WillCascadeOnDelete(false);
 
-            //var indexAnnotation = new IndexAnnotation();
-            var indexAttr = new IndexAttribute("IX_FullName");
-            
-            Property(field => field.FirstName).
-                HasColumnAnnotation("annotationIx", 
-                new IndexAnnotation(new IndexAttribute("IX_FullName") { IsClustered = false, IsUnique =true, Order = 1 }));
-            
-            Property(field => field.LastName).
-                HasColumnAnnotation("annotationIx", 
-                new IndexAnnotation(new IndexAttribute("IX_FullName") { IsClustered=false, IsUnique = true, Order = 2 }));
+            HasIndex(field => new { field.FirstName, field.LastName })
+                .HasName("ix_AutorFullName")
+                .IsClustered(false)
+                .IsUnique(true);
 
             Property(field => field.Comment).HasMaxLength(255);
             ToTable("Authors");
