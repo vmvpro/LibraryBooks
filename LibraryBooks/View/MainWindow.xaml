@@ -24,14 +24,45 @@
         </Label>
 
         <ListBox Name="lstListBooks" Grid.Row="1" Grid.Column="0" Background="LemonChiffon" 
-                 ItemsSource="{Binding Books}">
+                 ItemsSource="{Binding BooksView}">
             <ListBox.DataContext>
                 <local:ListBooksViewModel/>
             </ListBox.DataContext>
 
-            <!--<ListItem 
-                d:DataContext="{d:DesignInstance d:Type=local:ListBooksViewModel, IsDesignTimeCreatable=True}">
-            </ListItem>-->
+            <ListBox.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <Expander IsExpanded="True">
+                                            <Expander.Header>
+                                                <TextBlock Text="{Binding Name}" 
+                                                    FontWeight="Bold" 
+                                                    Foreground="White" 
+                                                    Background="LightGreen" 
+                                                    Margin="0,5,0,0" Padding="3"/>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" 
+                                           FontWeight="Bold" 
+                                           Foreground="White" 
+                                           Background="LightGreen" 
+                                           Margin="0,5,0,0" Padding="3"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListBox.GroupStyle>
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Aqua" Margin="10">
@@ -47,10 +78,17 @@
 
                             <Image Grid.RowSpan="2" Grid.Column="0" Source="01_sunset_long.jpg" />
                             <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}"/>
-                            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Year}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}-{1}">
+                                        <Binding  Path="Name"/>
+                                        <Binding  Path="Name"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
                         </Grid>
-                        
-                        
+
+
                     </Border>
                     <!--<Grid>
                         <Grid.ColumnDefinitions>
