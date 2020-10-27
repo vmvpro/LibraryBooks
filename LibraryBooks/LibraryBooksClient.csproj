@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Infrastructure\Annotations.cs" />
+    <Compile Include="Infrastructure\ConvertImage.cs" />
     <Compile Include="Infrastructure\Notifier.cs" />
     <Compile Include="LibraryDbContext\ConfigurationDb.cs" />
     <Compile Include="LibraryDbContext\LibraryContext.cs" />

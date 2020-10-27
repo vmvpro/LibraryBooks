@@ -24,39 +24,28 @@ namespace LibraryBooksClient.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private LibraryContext Context { get; }
+        //private LibraryContext Context { get; }
 
         public MainWindow()
         {
             InitializeComponent();
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<LibraryContext>());
-
-            //Context = new LibraryContext();
-
-            //Fill(); // uncomment if you want to fill database with default values
-
-            //lstListBooks.DataContext = new ListBooksViewModel(Context);
-
-            //lstListBooks.ItemsSource = viewModel.Books;
-            //lstListBooks.ItemsSource = new List<Book>()
-            //{
-            //	new Book() { Name = "CLR via C# .NET 4.5", Year=2012 },
-            //	new Book() { Name = "VB 6.0 (Intuit)", Year=2010 }
-            //};
-            //lstListBooks.ItemsSource = 
-            //ClientsTab.DataContext = new ClientsTabViewModel(Context);
-            //RoomsTab.DataContext = new RoomsTabViewModel(Context);
+            
+            //Fill(); 
 
         }
 
         private void Fill()
         {
-            //Context.Books.RemoveRange(Context.Books);
-            //Context.Authors.RemoveRange(Context.Authors);
-            //Context.Subjects.RemoveRange(Context.Subjects);
-            //Context.Categories.RemoveRange(Context.Categories);
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<LibraryContext>());
+            
+            var Context = new LibraryContext();
 
-            List<Book> listBook = new List<Book>()
+            Context.Books.RemoveRange(Context.Books);
+			Context.Authors.RemoveRange(Context.Authors);
+			Context.Subjects.RemoveRange(Context.Subjects);
+			Context.Categories.RemoveRange(Context.Categories);
+
+			List<Book> listBook = new List<Book>()
             {
                 new Book() { Name = "CLR via C# .NET 4.5", Year=2012 },
                 new Book() { Name = "VB 6.0 (Intuit)", Year=2010 }
@@ -84,7 +73,6 @@ namespace LibraryBooksClient.View
                     { 
                         Name = "VB 6.0",
                         Category = category
-
                     }
                 }
             });
