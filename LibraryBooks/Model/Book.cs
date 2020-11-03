@@ -25,6 +25,8 @@ namespace LibraryBooksClient.Model
         public int? IdSubject { get; set; }
         public virtual Subject Subject { get; set; }
 
+        public string Link { get; set; }
+
         public byte[] Image { get; set; }
 
         public string Tags { get; set; }
