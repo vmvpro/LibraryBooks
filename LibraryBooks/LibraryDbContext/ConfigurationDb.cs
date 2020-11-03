@@ -37,7 +37,8 @@ namespace LibraryBooksClient.LibraryDbContext
             HasKey(field => field.BookId);
             Property(field => field.Name).IsRequired();
             Property(field => field.Description).HasColumnType("nvarchar(max)");
-            Property(field => field.Image).HasColumnType((DbType.Binary).ToString());
+            Property(field => field.Image).HasColumnType("image");
+            Property(field => field.Tags).HasMaxLength(250);
 
             ToTable("Books");
         }

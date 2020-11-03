@@ -60,6 +60,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -92,6 +93,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\Command.cs" />
+    <Compile Include="Converters\CurentItemBookParamConverter.cs" />
+    <Compile Include="Converters\ImageCoverter.cs" />
     <Compile Include="Infrastructure\Annotations.cs" />
     <Compile Include="Infrastructure\ConvertImage.cs" />
     <Compile Include="Infrastructure\Notifier.cs" />
@@ -101,11 +104,16 @@
     <Compile Include="Migrations\202010261448350_Init.Designer.cs">
       <DependentUpon>202010261448350_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011012043570_BookFieldsChanged.cs" />
+    <Compile Include="Migrations\202011012043570_BookFieldsChanged.Designer.cs">
+      <DependentUpon>202011012043570_BookFieldsChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Author.cs" />
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Subject.cs" />
+    <Compile Include="ViewModel\StackPanelViewModel.cs" />
     <Compile Include="ViewModel\ListBooksViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -132,6 +140,9 @@
     <EmbeddedResource Include="Migrations\202010261448350_Init.resx">
       <DependentUpon>202010261448350_Init.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011012043570_BookFieldsChanged.resx">
+      <DependentUpon>202011012043570_BookFieldsChanged.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -145,12 +156,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\NotImageBook.png" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\01_sunset_long.jpg" />
+    <Resource Include="Converters\01_sunset_long.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Converters\NotImage.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -59,5 +59,24 @@ namespace LibraryBooksClient.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NotImage {
+            get {
+                object obj = ResourceManager.GetObject("NotImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на D:\Doc\Work\1_MyApplication\LibraryBooks\LibraryBooks\Converters.
+        /// </summary>
+        internal static string String {
+            get {
+                return ResourceManager.GetString("String", resourceCulture);
+            }
+        }
     }
 }

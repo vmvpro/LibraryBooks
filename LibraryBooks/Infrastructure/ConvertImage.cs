@@ -111,6 +111,8 @@ namespace LibraryBooksClient.Infrastructure
 			return data;
 		}
 
+		
+
 		/// <summary>
 		/// Возвращает объект BitmapImage (Получает массив byte[])
 		/// </summary>

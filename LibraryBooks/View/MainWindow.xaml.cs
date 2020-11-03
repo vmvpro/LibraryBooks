@@ -24,12 +24,16 @@ namespace LibraryBooksClient.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private LibraryContext Context { get; }
+        private LibraryContext Context { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            
+
+            Context = new LibraryContext();
+
+            lstListBooks.DataContext = new ListBooksViewModel(Context, ref lstListBooks);
+
             //Fill(); 
 
         }
@@ -100,6 +104,12 @@ namespace LibraryBooksClient.View
             });
 
             Context.SaveChanges();
+        }
+
+        private void lstListBooks_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Hello!");
+
         }
     }
 }

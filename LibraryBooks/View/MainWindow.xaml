@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryBooksClient.ViewModel"
+        xmlns:conv="clr-namespace:LibraryBooksClient.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+
+    </Window.Resources>
 
     <Grid ShowGridLines="True" >
         <Grid.RowDefinitions>
@@ -24,10 +28,22 @@
         </Label>
 
         <ListBox Name="lstListBooks" Grid.Row="1" Grid.Column="0" Background="LemonChiffon" 
-                 ItemsSource="{Binding BooksView}">
+                 SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
+                 ItemsSource="{Binding Path=BooksView, Mode=TwoWay}"
+                 IsSynchronizedWithCurrentItem="True"
+            >
+            <!--ItemsSource="{Binding BooksView}"-->
+            <!--d:DataContext="{d:DesignInstance d:Type=local:ListBooksViewModel, IsDesignTimeCreatable=True}">-->
+
             <ListBox.DataContext>
-                <local:ListBooksViewModel/>
+                <local:ListBooksViewModel />
             </ListBox.DataContext>
+
+            <!--d:DataContext="{d:DesignInstance d:Type=local:ListBooksViewModel, IsDesignTimeCreatable=True}"-->
+
+            <ListBox.Resources>
+                <conv:ImageConverter x:Key="imageConverter"/>
+            </ListBox.Resources>
 
             <ListBox.GroupStyle>
                 <GroupStyle>
@@ -63,9 +79,21 @@
                 </GroupStyle>
             </ListBox.GroupStyle>
 
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <!-- Edited: add pushpraj code to hide the dashed rectangle on focused item -->
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FocusManager.FocusedElement" Value="{Binding RelativeSource={RelativeSource Self}}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Aqua" Margin="10">
+                    <Border  BorderBrush="Aqua" Margin="10">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30"/>
@@ -74,57 +102,42 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="25"/>
                                 <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
                             </Grid.RowDefinitions>
 
-                            <Image Grid.RowSpan="2" Grid.Column="0" Source="01_sunset_long.jpg" />
+                            <Image Grid.RowSpan="2" Grid.Column="0" 
+                                   Source="{Binding Image, Converter={StaticResource imageConverter}}" />
+
                             <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}"/>
                             <TextBlock Grid.Column="1" Grid.Row="1">
                                 <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0}-{1}">
-                                        <Binding  Path="Name"/>
-                                        <Binding  Path="Name"/>
+                                    <MultiBinding StringFormat="{}{0} {1} ({2})">
+                                        <Binding  Path="Author.FirstName"/>
+                                        <Binding  Path="Author.LastName"/>
+                                        <Binding  Path="Year"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
+
+                            <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" 
+                                    Content="Insert Image" 
+                                    Tag="{Binding}"
+                                    Command="{Binding ElementName=lstListBooks, Path=DataContext.InsertImageCommand}"
+                                    CommandParameter="{Binding}"
+                                    />
+                            <!--<Button.CommandParameter>
+                                <MultiBinding Converter="{StaticResource ResetFilterRoomConverter}">
+                                    <Binding ElementName="RnTbFilter"/>
+                                    <Binding ElementName="RtCbFilter"/>
+                                    <Binding ElementName="RfCbFilter"/>
+                                </MultiBinding>
+                            </Button.CommandParameter>-->
                         </Grid>
-
-
                     </Border>
-                    <!--<Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                    </Grid>-->
-
                 </DataTemplate>
             </ListBox.ItemTemplate>
-
-            <!--<ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-
-                        -->
-            <!--<Image Grid.RowSpan="2" Source="{Binding image}"></Image>-->
-            <!--
-                        <TextBlock Text="{Binding Name}" Grid.Column="1"></TextBlock>
-                        <TextBlock Text="{Binding Year}" Grid.Row="1" Grid.Column="1"></TextBlock>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>-->
         </ListBox>
+        
 
     </Grid>
 </Window>
