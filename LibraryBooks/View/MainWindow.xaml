@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryBooksClient.ViewModel"
         xmlns:conv="clr-namespace:LibraryBooksClient.Converters"
+        
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="536.943" Width="800">
     <Window.Resources>
 
     </Window.Resources>
@@ -79,18 +80,6 @@
                 </GroupStyle>
             </ListBox.GroupStyle>
 
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <!-- Edited: add pushpraj code to hide the dashed rectangle on focused item -->
-                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="FocusManager.FocusedElement" Value="{Binding RelativeSource={RelativeSource Self}}" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </ListBox.ItemContainerStyle>
-
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border  BorderBrush="Aqua" Margin="10">
@@ -137,7 +126,26 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        
+
+        <Grid Grid.Column="1" Grid.Row="1">
+
+            <Border CornerRadius="5">
+                <Border.OpacityMask>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <Border
+                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Background="Black"
+                                        CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        SnapsToDevicePixels="True" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Border.OpacityMask>
+                
+            </Border>
+
+        </Grid>
 
     </Grid>
 </Window>

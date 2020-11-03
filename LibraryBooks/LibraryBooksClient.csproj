@@ -84,6 +84,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Styles\Buttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ContentControls.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Defaults.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Texts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\UserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -107,6 +139,10 @@
     <Compile Include="Migrations\202011012043570_BookFieldsChanged.cs" />
     <Compile Include="Migrations\202011012043570_BookFieldsChanged.Designer.cs">
       <DependentUpon>202011012043570_BookFieldsChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011032154136_AddField_Book_Link.cs" />
+    <Compile Include="Migrations\202011032154136_AddField_Book_Link.Designer.cs">
+      <DependentUpon>202011032154136_AddField_Book_Link.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Author.cs" />
@@ -142,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011012043570_BookFieldsChanged.resx">
       <DependentUpon>202011012043570_BookFieldsChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011032154136_AddField_Book_Link.resx">
+      <DependentUpon>202011032154136_AddField_Book_Link.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
