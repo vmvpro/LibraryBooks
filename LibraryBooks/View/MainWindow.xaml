@@ -7,7 +7,7 @@
         xmlns:conv="clr-namespace:LibraryBooksClient.Converters"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="536.943" Width="800">
+        Title="MainWindow" Height="615.358" Width="800">
     <Window.Resources>
 
     </Window.Resources>
@@ -19,14 +19,20 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300" ></ColumnDefinition>
+            <ColumnDefinition MinWidth="300" ></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition MinWidth="400"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Моя библиотека" Width="Auto" Grid.Row="0" Grid.ColumnSpan="2" Background="#FFECEBEB"
+        <Label Content="Моя библиотека" 
+               Width="Auto" 
+               Grid.Column="0"  
+               Grid.Row="0" Grid.ColumnSpan="3" 
+               Background="#FFECEBEB"
 		       HorizontalContentAlignment="Center"
 		       VerticalContentAlignment="Center" FontSize="20">
         </Label>
+        
 
         <ListBox Name="lstListBooks" Grid.Row="1" Grid.Column="0" Background="LemonChiffon" 
                  SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
@@ -85,16 +91,18 @@
                     <Border  BorderBrush="Aqua" Margin="10">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition MinWidth="150" Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="25"/>
                                 <RowDefinition Height="25"/>
                                 <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
                             </Grid.RowDefinitions>
 
-                            <Image Grid.RowSpan="2" Grid.Column="0" 
+                            <Image Grid.RowSpan="4" Grid.Column="0" 
                                    Source="{Binding Image, Converter={StaticResource imageConverter}}" />
 
                             <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}"/>
@@ -108,7 +116,15 @@
                                 </TextBlock.Text>
                             </TextBlock>
 
-                            <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" 
+                            <TextBlock Grid.Column="1" Grid.Row="2">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}Предмет: {0}">
+                                        <Binding  Path="Subject.Name"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+
+                            <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" 
                                     Content="Insert Image" 
                                     Tag="{Binding}"
                                     Command="{Binding ElementName=lstListBooks, Path=DataContext.InsertImageCommand}"
@@ -128,8 +144,13 @@
         </ListBox>
 
         <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="113*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="98*"/>
+            </Grid.RowDefinitions>
 
-            <Border CornerRadius="5">
+            <Border CornerRadius="5" Margin="0,0,-0.321,0.34" Grid.RowSpan="3">
                 <Border.OpacityMask>
                     <VisualBrush>
                         <VisualBrush.Visual>
@@ -142,7 +163,7 @@
                         </VisualBrush.Visual>
                     </VisualBrush>
                 </Border.OpacityMask>
-                
+
             </Border>
 
         </Grid>

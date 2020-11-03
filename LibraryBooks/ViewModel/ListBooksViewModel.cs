@@ -205,6 +205,25 @@ namespace LibraryBooksClient.ViewModel
                     Image = ConvertImage.ImageToBytes(pathImage)
 
 
+                },
+
+                new Book()
+                {
+                    Name = "Самый длинное название новой книги", Year=2010,
+                    Author = new Author() 
+                    { 
+                        FirstName = "Неизвестное имя автора", 
+                        LastName = "Неизвестная фамилия автора"
+                    },
+                    Subject = new Subject()
+                    {
+                        Name = "Кулинария",
+                        Category = new Category(){ Name = "Others"}
+                    },
+
+                    Image = ConvertImage.ImageToBytes(pathImage)
+
+
                 }
             });
 
