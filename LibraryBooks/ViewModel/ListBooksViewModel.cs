@@ -209,7 +209,7 @@ namespace LibraryBooksClient.ViewModel
 
                 new Book()
                 {
-                    Name = "Самый длинное название новой книги", Year=2010,
+                    Name = "Самое длинное название новой книги", Year=2010,
                     Author = new Author() 
                     { 
                         FirstName = "Неизвестное имя автора", 
