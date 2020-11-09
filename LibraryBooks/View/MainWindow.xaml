@@ -178,9 +178,11 @@
             
             HorizontalAlignment="Center" VerticalAlignment="Stretch" />
 
-        <Grid Grid.Column="2" Grid.Row="1" Margin="20"
-              DataContext="{Binding ElementName=lstListBooks, Path=SelectedItem}">
-            
+        <Grid Grid.Column="2" Grid.Row="1" Margin="20" 
+            DataContext="{Binding ElementName=lstListBooks, Path=SelectedItem}">
+
+            <!--DataContext="{Binding ElementName=lstListBooks, Path=SelectedItem}" x:Name="dataContextList"-->
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="300" MaxWidth="200"/>
                 <ColumnDefinition />
@@ -199,15 +201,6 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             
-            <Border 
-                Grid.RowSpan="6" 
-                BorderThickness="2" BorderBrush="Black"
-                Margin="0,0,15,0"
-                >
-                
-                <Image Grid.RowSpan="4" Grid.Column="0" 
-                   Margin="0,0,0,0" Stretch="Fill" Source="{Binding Image}" />
-            </Border>
             <TextBox 
                 Grid.Row="0" 
                 Grid.Column="1" 
@@ -225,8 +218,26 @@
             </TextBox>
 
             <TextBox Grid.Row="2" Grid.Column="1"
-                Text="{Binding Year, UpdateSourceTrigger=PropertyChanged}"
+                Text="{Binding Year}"
                 TextWrapping="Wrap" />
+
+            <Border 
+                Grid.RowSpan="6" 
+                BorderThickness="2" BorderBrush="Black"
+                Margin="0,0,15,0">
+
+                <Image Name="imgSelected" Grid.RowSpan="4" Grid.Column="0" 
+                   Margin="0,0,0,0" Stretch="Fill" 
+                       Source="{Binding Image}" />
+            </Border>
+
+            <Button 
+                Grid.Row="6" 
+                Content="Insert Image"
+                Command="{Binding ElementName=lstListBooks, Path=DataContext.InsertImageCommand}"
+                CommandParameter="{Binding}"
+                
+                />
         </Grid>
 
     </Grid>
