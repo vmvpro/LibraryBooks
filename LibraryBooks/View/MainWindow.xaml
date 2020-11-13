@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="743.962" Width="1000">
     <Window.Resources>
-
+        <conv:ImageConverter x:Key="imageConverter"/>
     </Window.Resources>
 
     <Grid ShowGridLines="False" >
@@ -35,7 +35,7 @@
 
 
         <ListBox Name="lstListBooks" Grid.Row="1" Grid.Column="0" Background="LemonChiffon" 
-                 SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
+                 SelectedItem="{Binding ElementName=ListBooksViewModel, Path=SelectedBook, Mode=TwoWay}"
                  ItemsSource="{Binding Path=BooksView, Mode=TwoWay}"
                  IsSynchronizedWithCurrentItem="True"
             >
@@ -43,14 +43,14 @@
             <!--d:DataContext="{d:DesignInstance d:Type=local:ListBooksViewModel, IsDesignTimeCreatable=True}">-->
 
             <ListBox.DataContext>
-                <local:ListBooksViewModel />
+                <local:ListBooksViewModel x:Name="ListBooksViewModel" />
             </ListBox.DataContext>
 
             <!--d:DataContext="{d:DesignInstance d:Type=local:ListBooksViewModel, IsDesignTimeCreatable=True}"-->
 
-            <ListBox.Resources>
+            <!--<ListBox.Resources>
                 <conv:ImageConverter x:Key="imageConverter"/>
-            </ListBox.Resources>
+            </ListBox.Resources>-->
 
             <ListBox.GroupStyle>
                 <GroupStyle>
@@ -179,12 +179,17 @@
             HorizontalAlignment="Center" VerticalAlignment="Stretch" />
 
         <Grid Grid.Column="2" Grid.Row="1" Margin="20" 
-            DataContext="{Binding ElementName=lstListBooks, Path=SelectedItem}">
+              DataContext="{Binding ElementName=lstListBooks, Path=SelectedItem, Mode=TwoWay}" >
+
+            <!--<Grid.DataContext>
+                
+            </Grid.DataContext>-->
 
             <!--DataContext="{Binding ElementName=lstListBooks, Path=SelectedItem}" x:Name="dataContextList"-->
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="300" MaxWidth="200"/>
+                <ColumnDefinition 
+                    MinWidth="300" MaxWidth="200"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             
@@ -206,7 +211,7 @@
                 Grid.Column="1" 
                 Text="{Binding Name}" FontSize="16" FontWeight="Bold" />
 
-            <TextBox Grid.Row="1" Grid.Column="1"
+            <!--<TextBox Grid.Row="1" Grid.Column="1"
                      TextWrapping="Wrap" FontSize="14">
 
                 <TextBox.Text>
@@ -215,21 +220,23 @@
                         <Binding  Path="Author.LastName"/>
                     </MultiBinding>
                 </TextBox.Text>
-            </TextBox>
+            </TextBox>-->
 
-            <TextBox Grid.Row="2" Grid.Column="1"
+            <!--<TextBox Grid.Row="2" Grid.Column="1"
                 Text="{Binding Year}"
                 TextWrapping="Wrap" />
-
+            -->
             <Border 
+                
                 Grid.RowSpan="6" 
                 BorderThickness="2" BorderBrush="Black"
                 Margin="0,0,15,0">
 
                 <Image Name="imgSelected" Grid.RowSpan="4" Grid.Column="0" 
-                   Margin="0,0,0,0" Stretch="Fill" 
-                       Source="{Binding Image}" />
+                   Margin="0,0,0,0" Stretch="Fill"
+                    Source="{Binding Image, Converter={StaticResource imageConverter}}"/>
             </Border>
+            
 
             <Button 
                 Grid.Row="6" 
@@ -237,6 +244,13 @@
                 Command="{Binding ElementName=lstListBooks, Path=DataContext.InsertImageCommand}"
                 CommandParameter="{Binding}"
                 
+                />
+            
+            <Button 
+                Grid.Row="7" 
+                Content="Update"
+                Command="{Binding ElementName=lstListBooks, Path=DataContext.UpdateCommand}"
+                                
                 />
         </Grid>
 

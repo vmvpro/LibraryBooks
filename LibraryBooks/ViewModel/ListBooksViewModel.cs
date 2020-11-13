@@ -22,10 +22,10 @@ using System.Data.Entity;
 
 namespace LibraryBooksClient.ViewModel
 {
-    
+
     public class ListBooksViewModel : ViewModelBase
     {
-        
+
         private bool flagDataLoadDb = false;
 
         public LibraryContext Context { get; set; }
@@ -40,6 +40,17 @@ namespace LibraryBooksClient.ViewModel
             set
             {
                 _selectedBook = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private Image _image;
+        public Image Image
+        {
+            get => _image;
+            set
+            {
+                _image = value;
                 RaisePropertyChanged();
             }
         }
@@ -60,6 +71,7 @@ namespace LibraryBooksClient.ViewModel
             #endregion
 
             //if (flagDataLoadDb)
+
             //{
             //    Context = new LibraryContext();
             //    books = new ObservableCollection<Book>(Context.Books);
@@ -76,13 +88,15 @@ namespace LibraryBooksClient.ViewModel
             BooksView = CollectionViewSource.GetDefaultView(Books);
             BooksView.GroupDescriptions.Add(new PropertyGroupDescription("Subject.Category.Name"));
 
-
+            SelectedBook = (Book)BooksView.CurrentItem;
         }
 
-        public ListBooksViewModel(LibraryContext context, ref ListBox lstListBooks)
+        public ListBooksViewModel(LibraryContext context, ref ListBox lstListBooks, ref Image image)
         {
             Context = context;
             listBox = lstListBooks;
+            _image = image;
+
             //listBox.SelectedIndex = 1;
 
             var items = listBox.SelectedItems.Cast<IEnumerable>();
@@ -96,9 +110,10 @@ namespace LibraryBooksClient.ViewModel
             BooksView.CollectionChanged += BooksView_CollectionChanged;
 
             InsertImageCommand = new RelayCommand<Book>(voidInsertImage, boolInsertImage());
+            UpdateCommand = new RelayCommand(voidUpdate, boolInsertImage());
 
             //SelectedBook = Context.Books.FirstOrDefault(book => book.BookId == ((Book)BooksView.CurrentItem).BookId);
-            //SelectedBook = (Book)BooksView.CurrentItem;
+            SelectedBook = (Book)BooksView.CurrentItem;
 
 
 
@@ -106,7 +121,7 @@ namespace LibraryBooksClient.ViewModel
 
         private void BooksView_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            
+
             //var obj = (Book)sender;
         }
 
@@ -115,9 +130,11 @@ namespace LibraryBooksClient.ViewModel
             //listBox.SelectedIndex = BooksView.CurrentPosition;
             //var obj = (Book)sender;
             //throw new NotImplementedException();
+
         }
 
         public RelayCommand<Book> InsertImageCommand { get; }
+
 
         void voidInsertImage(Book item)
         {
@@ -129,7 +146,7 @@ namespace LibraryBooksClient.ViewModel
             //var yyy = listBo
 
             //BooksView. = (object)item;
-            //SelectedBook = (Book)BooksView.CurrentItem;
+            SelectedBook = item;
 
             var opd = new OpenFileDialog();
 
@@ -141,7 +158,7 @@ namespace LibraryBooksClient.ViewModel
 
                 //Context.Books.Find(SelectedBook.BookId).Tags = "vmv";
                 SelectedBook.Image = ConvertImage.ImageToBytes(opd.FileName);
-
+                Image.Source = ConvertImage.BytesToImageSource(SelectedBook.Image);
                 //SelectedBook.Tags = opd.FileName;
 
                 Context.SaveChanges();
@@ -157,6 +174,28 @@ namespace LibraryBooksClient.ViewModel
             //return true;
             //return SelectedBook == null ? false : true;
             return _selectedBook == null ? false : true;
+        }
+
+        public RelayCommand UpdateCommand { get; }
+
+        void voidUpdate()
+        {
+            var item = (Book)listBox.SelectedItem;
+            SelectedBook = item;
+
+            //Context.Books.Add(new Book() { BookId = 3, Name = "vmv" });
+
+            //Context.Books.Find(SelectedBook.BookId).Tags = "vmv";
+            //SelectedBook.Name = item.Name;
+
+            //SelectedBook.Tags = opd.FileName;
+
+            Context.SaveChanges();
+
+            BooksView.Refresh();
+
+
+
         }
 
 
@@ -210,9 +249,9 @@ namespace LibraryBooksClient.ViewModel
                 new Book()
                 {
                     Name = "Самое длинное название новой книги", Year=2010,
-                    Author = new Author() 
-                    { 
-                        FirstName = "Неизвестное имя автора", 
+                    Author = new Author()
+                    {
+                        FirstName = "Неизвестное имя автора",
                         LastName = "Неизвестная фамилия автора"
                     },
                     Subject = new Subject()

@@ -32,7 +32,7 @@ namespace LibraryBooksClient.View
 
             Context = new LibraryContext();
 
-            lstListBooks.DataContext = new ListBooksViewModel(Context, ref lstListBooks);
+            lstListBooks.DataContext = new ListBooksViewModel(Context, ref lstListBooks, ref imgSelected);
 
             //Fill(); 
 
