@@ -3,14 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LibraryBooksClient.ViewModel"
+        xmlns:vm="clr-namespace:LibraryBooksClient.ViewModel"
+        xmlns:v="clr-namespace:LibraryBooksClient.View"
         xmlns:conv="clr-namespace:LibraryBooksClient.Converters"
-        
+        xmlns:context="clr-namespace:LibraryBooksClient.LibraryDbContext"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="743.962" Width="1000">
     <Window.Resources>
+        <!--<vm:MainWindowViewModel x:Key="MainWindowViewModel"/>-->
+
+        <!--<ObjectDataProvider 
+            x:Key="odpMainWindowViewModel"
+            ObjectType="{x:Type vm:MainWindowViewModel}">
+            <ObjectDataProvider.ConstructorParameters>
+                <system:Object></system:Object>
+            </ObjectDataProvider.ConstructorParameters>
+        </ObjectDataProvider>-->
+
         <conv:ImageConverter x:Key="imageConverter"/>
     </Window.Resources>
+
+    <!--<Window.DataContext>
+        <ObjectDataProvider ObjectType="vm:"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib">
+            <ObjectDataProvider.ConstructorParameters>
+                <sys:Int32>42</sys:Int32>
+            </ObjectDataProvider.ConstructorParameters>
+        </ObjectDataProvider>
+    </Window.DataContext>-->
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
 
     <Grid ShowGridLines="False" >
         <Grid.RowDefinitions>
@@ -33,20 +58,24 @@
 		       VerticalContentAlignment="Center" FontSize="20">
         </Label>
 
-
         <ListBox Name="lstListBooks" Grid.Row="1" Grid.Column="0" Background="LemonChiffon" 
+                 SelectionMode="Extended"
+                 SelectedItem="{Binding Path=SelectedBook}"
+                 ItemsSource="{Binding Path=BooksView}">
+
+            <!--<ListBox Name="lstListBooks" Grid.Row="1" Grid.Column="0" Background="LemonChiffon" 
                  SelectedItem="{Binding ElementName=ListBooksViewModel, Path=SelectedBook, Mode=TwoWay}"
                  ItemsSource="{Binding Path=BooksView, Mode=TwoWay}"
-                 IsSynchronizedWithCurrentItem="True"
-            >
+                 IsSynchronizedWithCurrentItem="True">-->
+
             <!--ItemsSource="{Binding BooksView}"-->
-            <!--d:DataContext="{d:DesignInstance d:Type=local:ListBooksViewModel, IsDesignTimeCreatable=True}">-->
+            <!--d:DataContext="{d:DesignInstance d:Type=vm:ListBooksViewModel, IsDesignTimeCreatable=True}">-->
 
-            <ListBox.DataContext>
-                <local:ListBooksViewModel x:Name="ListBooksViewModel" />
-            </ListBox.DataContext>
+            <!--<ListBox.DataContext>
+                <vm:ListBooksViewModel x:Name="ListBooksViewModel" />
+            </ListBox.DataContext>-->
 
-            <!--d:DataContext="{d:DesignInstance d:Type=local:ListBooksViewModel, IsDesignTimeCreatable=True}"-->
+            <!--d:DataContext="{d:DesignInstance d:Type=vm:ListBooksViewModel, IsDesignTimeCreatable=True}"-->
 
             <!--<ListBox.Resources>
                 <conv:ImageConverter x:Key="imageConverter"/>
@@ -129,7 +158,7 @@
                                     <TextBlock 
                                         VerticalAlignment="Center"
                                         TextWrapping="Wrap">
-                                        
+
                                         <TextBlock.Text>
                                             <MultiBinding StringFormat="{}Год издания: {0}">
                                                 <Binding  Path="Year"/>
@@ -149,15 +178,17 @@
                                 </UniformGrid>
                             </StackPanel>
 
-                            <Image Grid.RowSpan="4" Grid.Column="0" 
+                            <Image x:Name="imgSelectedItemListBox" Grid.RowSpan="4" Grid.Column="0" 
                                    Margin="0,0,0,7"
                                    Stretch="Fill"
-                                   Source="{Binding Image, Converter={StaticResource imageConverter}}" />
+                                   Source="{Binding Image, Mode=TwoWay, Converter={StaticResource imageConverter}}" />
 
                             <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" 
+                                    Visibility="Hidden"
                                     Content="Insert Image" 
-                                    Tag="{Binding}"
-                                    Command="{Binding ElementName=lstListBooks, Path=DataContext.InsertImageCommand}"
+                                    Command="{Binding 
+                                        RelativeSource={RelativeSource AncestorType={x:Type Window}}, 
+                                        Path=DataContext.InsertImageCommand}"
                                     CommandParameter="{Binding}"
                                     />
                             <!--<Button.CommandParameter>
@@ -179,7 +210,7 @@
             HorizontalAlignment="Center" VerticalAlignment="Stretch" />
 
         <Grid Grid.Column="2" Grid.Row="1" Margin="20" 
-              DataContext="{Binding ElementName=lstListBooks, Path=SelectedItem, Mode=TwoWay}" >
+              DataContext="{Binding SelectedBook, Mode=TwoWay, NotifyOnTargetUpdated=True}">
 
             <!--<Grid.DataContext>
                 
@@ -192,7 +223,7 @@
                     MinWidth="300" MaxWidth="200"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -205,27 +236,44 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            
+
+
             <TextBox 
                 Grid.Row="0" 
                 Grid.Column="1" 
                 Text="{Binding Name}" FontSize="16" FontWeight="Bold" />
 
-            <!--<TextBox Grid.Row="1" Grid.Column="1"
+            <TextBox Grid.Row="1" Grid.Column="1"
                      TextWrapping="Wrap" FontSize="14">
 
                 <TextBox.Text>
                     <MultiBinding StringFormat="{}{0} {1}">
-                        <Binding  Path="Author.FirstName"/>
-                        <Binding  Path="Author.LastName"/>
+                        <Binding Path="Author.FirstName"/>
+                        <Binding Path="Author.LastName"/>
                     </MultiBinding>
                 </TextBox.Text>
-            </TextBox>-->
+            </TextBox>
 
-            <!--<TextBox Grid.Row="2" Grid.Column="1"
+            <TextBox Grid.Row="2" Grid.Column="1"
                 Text="{Binding Year}"
                 TextWrapping="Wrap" />
-            -->
+
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBox Grid.Row="0" Grid.Column="1"
+                         Text="{Binding Link}"
+                         TextWrapping="Wrap" 
+                         
+                     />
+
+                <Button Grid.Row="0" Grid.Column="1">...</Button>
+            </Grid>
+
+
             <Border 
                 
                 Grid.RowSpan="6" 
@@ -234,22 +282,24 @@
 
                 <Image Name="imgSelected" Grid.RowSpan="4" Grid.Column="0" 
                    Margin="0,0,0,0" Stretch="Fill"
-                    Source="{Binding Image, Converter={StaticResource imageConverter}}"/>
+                    Source="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, 
+                                  Path=}"/>
             </Border>
-            
+
 
             <Button 
                 Grid.Row="6" 
                 Content="Insert Image"
-                Command="{Binding ElementName=lstListBooks, Path=DataContext.InsertImageCommand}"
+                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, 
+                                  Path=DataContext.InsertImageCommand}"
                 CommandParameter="{Binding}"
                 
                 />
-            
+
             <Button 
-                Grid.Row="7" 
+                Grid.Row="9" Grid.ColumnSpan="2" 
                 Content="Update"
-                Command="{Binding ElementName=lstListBooks, Path=DataContext.UpdateCommand}"
+                Command="{Binding UpdateCommand}"
                                 
                 />
         </Grid>

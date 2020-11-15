@@ -149,9 +149,7 @@
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Subject.cs" />
-    <Compile Include="ViewModel\StackPanelViewModel.cs" />
     <Compile Include="ViewModel\ListBooksViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\MainWindow.xaml.cs">

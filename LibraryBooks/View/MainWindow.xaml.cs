@@ -30,9 +30,11 @@ namespace LibraryBooksClient.View
         {
             InitializeComponent();
 
-            Context = new LibraryContext();
+            this.DataContext = new MainWindowViewModel(this);
 
-            lstListBooks.DataContext = new ListBooksViewModel(Context, ref lstListBooks, ref imgSelected);
+            //Context = new LibraryContext();
+
+            //lstListBooks.DataContext = new ListBooksViewModel(Context, ref lstListBooks, ref imgSelected);
 
             //Fill(); 
 
